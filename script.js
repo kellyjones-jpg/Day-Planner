@@ -1,3 +1,4 @@
+// If time block values are in local storage, populate them
 var getVal;
 getVal = localStorage.getItem("9AM");
 if (getVal)
@@ -54,7 +55,7 @@ if (getVal)
 }
 
 // Create an event listener for each button
-// When the button is clicked it will save the associated textarea to localStorage
+// When the button is clicked it will save the corresponding textarea to localStorage
 var x;
 btn9AM.addEventListener('click', function()
 {
@@ -110,10 +111,15 @@ btn5PM.addEventListener('click', function()
 	localStorage.setItem("5PM", x);
 })
 
-// Get hours in military time 0-23 which is equal to 12:00am-11pm. For example, 1:00pm = 13.
-// var d = new Date();
-// var currentHour = d.getHours();
-var currentHour = 13;
+// Get hours in military time 0-23 which is equal to 12:00am-11pm. 
+// For example, 1:00pm = 13. The upper case 'H' gives you military (24 hr) time,
+// the lower case 'h' gives you standard (12 hr am/pm) time.
+
+// Get hour using moment.js
+//var currentHour = moment().format('H');
+// Get hour using javascript
+var d = new Date();
+var currentHour = d.getHours();
 
 setColors("textarea9AM", 9);	// 9AM
 setColors("textarea10AM", 10);	// 10AM
@@ -129,17 +135,20 @@ function setColors(txtArea, blockHour)
 {
 	if (blockHour < currentHour)
 	{
-		document.getElementById(txtArea).style.backgroundColor = "d3d3d3";
-		// document.getElementById(txtArea).className = "textarea past";
+		document.getElementById(txtArea).className = "textarea past";
 	}
 	else if (blockHour > currentHour)
 	{
-		document.getElementById(txtArea).style.backgroundColor = "77dd77";
-		// document.getElementById(txtArea).className = "textarea future";
+		document.getElementById(txtArea).className = "textarea future";
 	}
 	else
 	{
-		document.getElementById(txtArea).style.backgroundColor = "ff6961";
-		// document.getElementById(txtArea).className = "textarea present";
+		document.getElementById(txtArea).className = "textarea present";
 	}
 }
+
+// Get the header date utilizing Moment.js
+var dayText = moment().format('dddd');
+var monthDay = moment().format("MMM Do");
+var c = dayText + ", " + monthDay;
+document.getElementById("currentDay").innerHTML = c;
