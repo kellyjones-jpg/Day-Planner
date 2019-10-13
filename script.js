@@ -1,10 +1,3 @@
-// Get the header date utilizing Moment.js
-//var dayText = moment().format('dddd');
-//var monthDay = moment().format("MMM Do");
-//var c = dayText + ", " + monthDay;
-//document.getElementById("currentDay").innerHTML = c;
-
-// If time block values are in local storage, populate them
 var getVal;
 getVal = localStorage.getItem("9AM");
 if (getVal)
@@ -117,32 +110,36 @@ btn5PM.addEventListener('click', function()
 	localStorage.setItem("5PM", x);
 })
 
+// Get hours in military time 0-23 which is equal to 12:00am-11pm. For example, 1:00pm = 13.
+// var d = new Date();
+// var currentHour = d.getHours();
 var currentHour = 13;
-setColors("textarea9AM", 9);
-setColors("textarea10AM", 10);
-setColors("textarea11AM", 11);
-setColors("textarea12PM", 12);
-setColors("textarea1PM", 13);
-setColors("textarea2PM", 14);
-setColors("textarea3PM", 15);
-setColors("textarea4PM", 16);
-setColors("textarea5PM", 17);
+
+setColors("textarea9AM", 9);	// 9AM
+setColors("textarea10AM", 10);	// 10AM
+setColors("textarea11AM", 11);	// 11AM
+setColors("textarea12PM", 12);	// 12PM
+setColors("textarea1PM", 13);	// 1PM
+setColors("textarea2PM", 14);	// 2PM
+setColors("textarea3PM", 15);	// 3PM
+setColors("textarea4PM", 16);	// 4PM
+setColors("textarea5PM", 17);	// 5PM
 
 function setColors(txtArea, blockHour)
 {
 	if (blockHour < currentHour)
 	{
-		//document.getElementById(txtArea).style.backgroundColor = "d3d3d3";
-		document.getElementById(txtArea).className = "past";
+		document.getElementById(txtArea).style.backgroundColor = "d3d3d3";
+		// document.getElementById(txtArea).className = "textarea past";
 	}
 	else if (blockHour > currentHour)
 	{
-		//document.getElementById(txtArea).style.backgroundColor = "77dd77";
-		document.getElementById(txtArea).className = "future";
+		document.getElementById(txtArea).style.backgroundColor = "77dd77";
+		// document.getElementById(txtArea).className = "textarea future";
 	}
 	else
 	{
-		//document.getElementById(txtArea).style.backgroundColor = "ff6961";
-		document.getElementById(txtArea).className = "present";
+		document.getElementById(txtArea).style.backgroundColor = "ff6961";
+		// document.getElementById(txtArea).className = "textarea present";
 	}
 }
