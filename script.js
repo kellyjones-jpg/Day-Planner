@@ -1,5 +1,6 @@
 // If time block values are in local storage, populate them
 var getVal;
+
 getVal = localStorage.getItem("9AM");
 if (getVal)
 {
@@ -148,6 +149,7 @@ function setColors(txtArea, blockHour)
 }
 
 // Get the header date utilizing Moment.js
+// This doesn't work and I don't know why...
 var dayText = moment().format('dddd');
 var monthDay = moment().format("MMM Do");
 var c = dayText + ", " + monthDay;
